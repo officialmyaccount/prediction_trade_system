@@ -24,3 +24,20 @@ plt.plot(df['Close'])
 plt.xlabel('Date', fontsize = 14)
 plt.ylabel('Close Price USD($)', fontsize = 14)
 plt.show()
+
+# 移動平均線の表示
+ma_day = [10, 20, 50]
+for ma in ma_day:
+    column_name = f"MA for {ma} days"
+    df[column_name] = df['Adj Close'].rolling(ma).mean()
+
+plt.figure(figsize=(16, 6))
+plt.title(s_target + 'Close Price MA History')
+plt.plot(df['Close'][-300:])
+plt.plot(df['MA for 10 days'][-300:])
+plt.plot(df['MA for 20 days'][-300:])
+plt.plot(df['MA for 50 days'][-300:])
+plt.xlabel('Date', fontsize = 14)
+plt.ylabel('Close Price USD($)', fontsize = 14)
+plt.legend(['Close', 'MA for 10 days', 'MA for 20 days', 'MA for 50 days'], loc='upper right')
+plt.show()
