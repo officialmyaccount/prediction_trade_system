@@ -24,13 +24,5 @@ for ma in ma_day:
     column_name = f"MA for {ma} days"
     df[column_name] = df['Adj Close'].rolling(ma).mean()
 
-plt.figure(figsize=(16, 6))
-plt.title(s_target + 'Close Price History')
-plt.plot(df['Close'][-365:])
-plt.plot(df['MA for 10 days'][-365:])
-plt.plot(df['MA for 20 days'][-365:])
-plt.plot(df['MA for 50 days'][-365:])
-plt.xlabel('Date', fontsize = 14)
-plt.ylabel('Close Price USD($)', fontsize = 14)
-plt.legend(['Close', 'MA for 10 days', 'MA for 20 days', 'MA for 50 days'], loc='upper right')
-plt.show()
+# ローソク足の表示
+mpf.plot(df[-365:], type='candle', volume=True, mav=(10, 20, 50), mavcolors = ('red', 'blue', 'yellow'),  figratio=(16, 6), title=s_target + ' Close Price History')
