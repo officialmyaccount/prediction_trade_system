@@ -91,5 +91,14 @@ for ma in ma_day:
     column_name = f"MA for {ma} days"
     df[column_name] = df['Adj Close'].rolling(ma).mean()
 
+plt.figure(figsize=(16,6))
+plt.title('Model')
+plt.xlabel('Date', fontsize=14)
+plt.ylabel('Close Price USD ($)', fontsize=14)
+plt.plot(train['Close'])
+plt.plot(valid[['Close', 'Predictions']])
+plt.legend(['Train', 'Val', 'Predictions'], loc='lower right')
+plt.show()
+
 # ローソク足の表示
 mpf.plot(df[-365:], type='candle', volume=True, mav=(10, 20, 50), mavcolors = ('red', 'blue', 'yellow'),  figratio=(16, 6), title=s_target + ' Close Price History')
